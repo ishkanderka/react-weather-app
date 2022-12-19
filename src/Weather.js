@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
+import CurrentDate from "./CurrentDate";
 
 export default function Weather(props) {
   const [weather, setWeather] = useState({ ready: false });
   function handleResponse(response) {
     setWeather({
       ready: true,
-      date: "Sat, Nov 19, ",
+      date: new Date(response.data.time * 1000),
       temperature: response.data.temperature.current,
       humidity: response.data.temperature.humidity,
       wind: response.data.wind.speed,
@@ -94,13 +95,14 @@ export default function Weather(props) {
                 <div className="location-time">
                   <ul className="search-result">
                     <li className="city">
-                      <h1>{weather.city}</h1>
+                      <h1 className="text-uppercase">{weather.city}</h1>
                     </li>
                     <li className="current-date">
                       <h6>
                         <span>Updated on </span>
-                        <span>{weather.date}</span>
-                        <span>22:26 </span>
+                        <span>
+                          <CurrentDate date={weather.date} />
+                        </span>
                         <span>p.m.</span>
                       </h6>
                     </li>
