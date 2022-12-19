@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
 
-export default function Weather() {
+export default function Weather(props) {
   const [weather, setWeather] = useState({ ready: false });
   function handleResponse(response) {
     setWeather({
@@ -14,6 +14,7 @@ export default function Weather() {
       feelsLike: response.data.temperature.feels_like,
       description: response.data.condition.description,
       iconUrl: `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-night.png`,
+      city: response.data.city,
     });
   }
   if (weather.ready) {
@@ -180,8 +181,7 @@ export default function Weather() {
     );
   } else {
     const apiKey = "bb6baff71441307f3828bdt1a95do413";
-    let city = "Kyiv";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.dafaultCity}}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
 
     return "Loading...";
