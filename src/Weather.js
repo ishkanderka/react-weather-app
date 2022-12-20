@@ -30,7 +30,7 @@ export default function Weather(props) {
     search();
   }
 
-  function handleCityChange(event) {
+  function handleCitySearch(event) {
     setCity(event.target.value);
   }
   if (weather.ready) {
@@ -84,7 +84,7 @@ export default function Weather(props) {
                           className="form-control border-0"
                           autoFocus="on"
                           autoComplete="off"
-                          onChange={handleCityChange}
+                          onChange={handleCitySearch}
                         />
                       </div>
                       <div className="col-auto px-1 buttons">
