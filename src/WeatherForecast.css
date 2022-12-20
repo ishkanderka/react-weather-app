@@ -1,0 +1,21 @@
+.WeatherForecast {
+  text-align: center;
+  color: #6c757d;
+}
+
+.WeatherForecast-day {
+  font-size: 17px;
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  opacity: 0.8;
+}
+.WeatherForecast .weather-icon {
+  margin-left: 0px;
+}
+.WeatherForecast-temperatures {
+  font-size: 15px;
+}
+.WeatherForecast-temperature-min {
+  opacity: 0.6;
+  margin-left: 5px;
+}

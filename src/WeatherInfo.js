@@ -29,14 +29,13 @@ export default function WeatherInfo(props) {
 
       <div className="row weather-details">
         <div className="col-7 mt-0">
-          <div className="d-flex justify-content-center align-items-center current-city-temp">
+          <div className="d-flex justify-content-center align-items-center">
             <img
               src={props.data.iconUrl}
               alt={props.data.description}
               className="weather-icon"
               width="140"
               height="135"
-              id="icon"
             />
             <div className="current-weather-temp">
               <WeatherTemperature celsius={props.data.temperature} />
