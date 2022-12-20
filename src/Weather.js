@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import WeatherInfo from "./WeatherInfo";
 import axios from "axios";
 import "./Weather.css";
-import WeatherInfo from "./WeatherInfo";
 
 export default function Weather(props) {
   const [weather, setWeather] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
+
   function handleResponse(response) {
     setWeather({
       ready: true,
@@ -28,11 +29,13 @@ export default function Weather(props) {
   function handleCitySearch(event) {
     setCity(event.target.value);
   }
+
   function search() {
     const apiKey = "bb6baff71441307f3828bdt1a95do413";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}}&key=${apiKey}&units=metric`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
+
   if (weather.ready) {
     return (
       <div className="Weather">
