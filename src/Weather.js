@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
-import CurrentDate from "./CurrentDate";
+import WeatherInfo from "./WeatherInfo";
 
 export default function Weather(props) {
   const [weather, setWeather] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
   function handleResponse(response) {
     setWeather({
       ready: true,
@@ -17,6 +18,20 @@ export default function Weather(props) {
       iconUrl: `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-night.png`,
       city: response.data.city,
     });
+  }
+
+  function search() {
+    const apiKey = "bb6baff71441307f3828bdt1a95do413";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
   }
   if (weather.ready) {
     return (
@@ -57,15 +72,19 @@ export default function Weather(props) {
 
               <div className="row search-row justify-content-center">
                 <div className="col-9">
-                  <form className="mt-3 mb-3 search-form">
+                  <form
+                    className="mt-3 mb-3 search-form"
+                    onSubmit={handleSubmit}
+                  >
                     <div className="row gx-0">
                       <div className="col">
                         <input
-                          type="text"
+                          type="search"
                           placeholder="Enter city name"
                           className="form-control border-0"
                           autoFocus="on"
                           autoComplete="off"
+                          onChange={handleCityChange}
                         />
                       </div>
                       <div className="col-auto px-1 buttons">
@@ -90,74 +109,7 @@ export default function Weather(props) {
                   </form>
                 </div>
               </div>
-
-              <div className="weather-data">
-                <div className="location-time">
-                  <ul className="search-result">
-                    <li className="city">
-                      <h1 className="text-uppercase">{weather.city}</h1>
-                    </li>
-                    <li className="current-date">
-                      <h6>
-                        <span>Updated on </span>
-                        <span>
-                          <CurrentDate date={weather.date} />
-                        </span>
-                        <span>p.m.</span>
-                      </h6>
-                    </li>
-                    <li>
-                      <h6 className="text-uppercase">{weather.description}</h6>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="row weather-details">
-                <div className="col-7 mt-0">
-                  <div className="d-flex justify-content-center align-items-center current-city-temp">
-                    <img
-                      src={weather.iconUrl}
-                      alt={weather.description}
-                      className="weather-icon"
-                      width="140"
-                      height="135"
-                    />
-                    <div className="current-weather-temp">
-                      <span id="degrees">
-                        {Math.round(weather.temperature)}
-                      </span>
-                      <span className="units">
-                        <a href="/" className="temp-difference">
-                          °C
-                        </a>
-                        |
-                        <a href="/" className="temp-difference">
-                          °F
-                        </a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-4 weather-details mt-4">
-                  <div className="d-flex justify-content-center align-items-center">
-                    <ul className="feels">
-                      <li className="humidity">
-                        <span>Humidity: {weather.humidity}%</span>
-                      </li>
-                      <li className="wind">
-                        <span>Wind: {Math.round(weather.wind)} km/h</span>
-                      </li>
-                      <li className="temp">
-                        <span>
-                          Feels like: {Math.round(weather.feelsLike)}°C
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+              <WeatherInfo data={weather} />
             </div>
             <small>
               This project was coded by{" "}
@@ -182,10 +134,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    const apiKey = "bb6baff71441307f3828bdt1a95do413";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.dafaultCity}}&key=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-
+    search();
     return "Loading...";
   }
 }
