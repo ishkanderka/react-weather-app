@@ -15,16 +15,11 @@ export default function Weather(props) {
       wind: response.data.wind.speed,
       feelsLike: response.data.temperature.feels_like,
       description: response.data.condition.description,
-      iconUrl: `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-night.png`,
+      iconUrl: `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`,
       city: response.data.city,
     });
   }
 
-  function search() {
-    const apiKey = "bb6baff71441307f3828bdt1a95do413";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}}&key=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-  }
   function handleSubmit(event) {
     event.preventDefault();
     search();
@@ -32,6 +27,11 @@ export default function Weather(props) {
 
   function handleCitySearch(event) {
     setCity(event.target.value);
+  }
+  function search() {
+    const apiKey = "bb6baff71441307f3828bdt1a95do413";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
   }
   if (weather.ready) {
     return (

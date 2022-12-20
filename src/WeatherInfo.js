@@ -35,6 +35,7 @@ export default function WeatherInfo(props) {
               className="weather-icon"
               width="140"
               height="135"
+              id="icon"
             />
             <div className="current-weather-temp">
               <span id="degrees">{Math.round(props.data.temperature)}</span>
