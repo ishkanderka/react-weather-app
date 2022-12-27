@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import WeatherInfo from "./WeatherInfo";
-import WeatherForecast from "./WeatherForecast";
 import axios from "axios";
 import "./Weather.css";
+import WeatherForecast from "./WeatherForecast";
+import Header from "./Header";
 
 export default function Weather(props) {
   const [weather, setWeather] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
+    console.log(response.data);
     setWeather({
       ready: true,
+      coordinates: response.data.coordinates,
       date: new Date(response.data.time * 1000),
       temperature: response.data.temperature.current,
       humidity: response.data.temperature.humidity,
@@ -43,37 +46,7 @@ export default function Weather(props) {
         <div className="container">
           <div className="weather-app-wrapper">
             <div className="weather-app">
-              <header>
-                <div className="row highlighted-cities justify-content-center">
-                  <div className="col-2 header-city">
-                    <a href="/" className="cities">
-                      {" "}
-                      New York
-                    </a>
-                  </div>
-                  <div className="col-2 header-city">
-                    <a href="/" className="cities">
-                      Toronto
-                    </a>
-                  </div>
-                  <div className="col-2 header-city">
-                    <a href="/" className="cities">
-                      London
-                    </a>
-                  </div>
-                  <div className="col-2 header-city">
-                    <a href="/" className="cities">
-                      Berlin
-                    </a>
-                  </div>
-                  <div className="col-2 header-city india">
-                    <a href="/" className="cities">
-                      New Delhi
-                    </a>
-                  </div>
-                </div>
-              </header>
-
+              <Header />
               <div className="row search-row justify-content-center">
                 <div className="col-9">
                   <form
@@ -113,9 +86,9 @@ export default function Weather(props) {
                   </form>
                 </div>
               </div>
-              <WeatherInfo data={weather} />
+              <WeatherInfo info={weather} />
               <hr />
-              <WeatherForecast data={weather} />
+              <WeatherForecast coordinates={weather.coordinates} />
             </div>
             <small>
               This project was coded by{" "}

@@ -9,19 +9,19 @@ export default function WeatherInfo(props) {
         <div className="location-time">
           <ul className="search-result">
             <li className="city">
-              <h1 className="text-uppercase">{props.data.city}</h1>
+              <h1 className="text-uppercase">{props.info.city}</h1>
             </li>
             <li className="current-date">
               <h6>
                 <span>Updated on </span>
                 <span>
-                  <CurrentDate date={props.data.date} />
+                  <CurrentDate date={props.info.date} />
                 </span>
                 <span>p.m.</span>
               </h6>
             </li>
             <li>
-              <h6 className="text-uppercase">{props.data.description}</h6>
+              <h6 className="text-uppercase">{props.info.description}</h6>
             </li>
           </ul>
         </div>
@@ -29,16 +29,16 @@ export default function WeatherInfo(props) {
 
       <div className="row weather-details">
         <div className="col-7 mt-0">
-          <div className="d-flex justify-content-center align-items-center">
+          <div className="d-flex justify-content-center align-items-center current-city-temp">
             <img
-              src={props.data.iconUrl}
-              alt={props.data.description}
+              src={props.info.iconUrl}
+              alt={props.info.description}
               className="weather-icon"
               width="140"
               height="135"
             />
             <div className="current-weather-temp">
-              <WeatherTemperature celsius={props.data.temperature} />
+              <WeatherTemperature celsius={props.info.temperature} />
             </div>
           </div>
         </div>
@@ -47,13 +47,13 @@ export default function WeatherInfo(props) {
           <div className="d-flex justify-content-center align-items-center">
             <ul className="feels">
               <li className="humidity">
-                <span>Humidity: {props.data.humidity}%</span>
+                <span>Humidity: {props.info.humidity}%</span>
               </li>
               <li className="wind">
-                <span>Wind: {Math.round(props.data.wind)} km/h</span>
+                <span>Wind: {Math.round(props.info.wind)} km/h</span>
               </li>
               <li className="temp">
-                <span>Feels like: {Math.round(props.data.feelsLike)}°C</span>
+                <span>Feels like: {Math.round(props.info.feelsLike)}°C</span>
               </li>
             </ul>
           </div>
