@@ -8,13 +8,7 @@ export default function WeatherForecast(props) {
   let [forecast, setForecast] = useState(null);
 
   function handleResponse(response) {
-    setForecast({
-      day: response.data.daily[0].temperature.day,
-      iconUrl: `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.daily[0].condition.icon}.png`,
-      description: response.data.daily[0].condition.description,
-      maxTemp: response.data.daily[0].temperature.maximum,
-      minTemp: response.data.daily[0].temperature.minimum,
-    });
+    setForecast(response.data.daily);
     setLoaded(true);
   }
 
@@ -22,9 +16,17 @@ export default function WeatherForecast(props) {
     return (
       <div className="WeatherForecast">
         <div className="row">
-          <div className="col">
-            <WeatherForecastDay forecastDay={forecast} />
-          </div>
+          {forecast.map(function (forecastDay, index) {
+            if (index < 5) {
+              return (
+                <div className="col" key={index}>
+                  <WeatherForecastDay forecastDay={forecastDay} />{" "}
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
         </div>
       </div>
     );

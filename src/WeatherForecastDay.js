@@ -2,16 +2,16 @@ import React from "react";
 
 export default function WeatherForecastDay(props) {
   function maxTemperature() {
-    let temperature = Math.round(props.forecastDay.maxTemp);
+    let temperature = Math.round(props.forecastDay.temperature.maximum);
     return `${temperature}°`;
   }
 
   function minTemperature() {
-    let temperature = Math.round(props.forecastDay.minTemp);
+    let temperature = Math.round(props.forecastDay.temperature.minimum);
     return `${temperature}°`;
   }
   function day() {
-    let date = new Date(props.forecastDay.day * 1000);
+    let date = new Date(props.forecastDay.time * 1000);
     let day = date.getDay();
 
     let days = [
@@ -31,11 +31,11 @@ export default function WeatherForecastDay(props) {
       <div className="WeatherForecast-day ">{day()}</div>
       <div className="d-flex justify-content-center align-items-center ">
         <img
-          src={props.forecastDay.iconUrl}
-          alt={props.forecastDay.description}
+          src={props.forecastDay.condition.icon_url}
+          alt={props.forecastDay.condition.description}
           className="forecast-icon"
-          width="90"
-          height="90"
+          width="70"
+          height="70"
         />
       </div>
       <div className="WeatherForecast-temperatures">
