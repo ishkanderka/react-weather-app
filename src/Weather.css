@@ -17,36 +17,6 @@ body {
   background-color: hsla(206, 100%, 93%, 0.55);
 }
 
-div.header-city {
-  display: inline;
-  border-left: 1px solid white;
-  font-weight: 220;
-  font-size: 15px;
-  margin-bottom: 7px;
-  margin-left: 7px;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: "Playfair Display", serif;
-}
-
-.india {
-  border-right: 1px solid #ffffff;
-}
-
-a.cities {
-  color: #6c757d;
-  filter: drop-shadow(2px 2px 2px #ffffff);
-  text-decoration: none;
-  transition: all 200ms ease-in-out;
-  font-weight: 400;
-}
-
-a.cities:hover {
-  cursor: pointer;
-  color: black;
-  filter: drop-shadow(2px 2px 1px #ffffff);
-}
-
 .search-row {
   font-family: "Playfair Display", serif;
 }
@@ -61,27 +31,16 @@ a.cities:hover {
   font-family: "Quicksand", sans-serif;
 }
 
-#city {
+WeatherInfo.city {
   margin-bottom: 0.5%;
 }
-#updated::first-letter {
-  text-transform: capitalize;
-}
-#todays-date,
-#todays-time {
-  text-transform: capitalize;
-}
 
-#description {
-  text-transform: uppercase;
-  font-weight: bold;
-}
 .WeatherInfo .weather-icon {
   display: block;
   margin-left: 0px;
 }
 
-#degrees {
+.WeatherTemperature .degrees {
   font-family: "Quicksand", sans-serif;
   font-size: 62px;
   font-weight: 400;
@@ -89,14 +48,14 @@ a.cities:hover {
   line-height: 0;
 }
 
-.units {
+.WeatherTemperature .units {
   position: relative;
   font-size: 18px;
   top: -30px;
-  color: #ffffff;
+  color: #6c757d;
 }
 
-a.temp-difference {
+.WeatherTemperature a.temp-difference {
   color: #6c757d;
   filter: drop-shadow(2px 2px 2px #ffffff);
   text-decoration: none;
@@ -104,13 +63,13 @@ a.temp-difference {
   font-weight: 400;
 }
 
-a.temp-difference:hover {
+.WeatherTemperature a.temp-difference:hover {
   cursor: default;
   color: black;
   filter: drop-shadow(2px 2px 1px #ffffff);
 }
 
-.feels {
+.WeatherInfo .feels {
   list-style: none;
   color: #6c757d;
   font-family: "Quicksand", sans-serif;
@@ -118,21 +77,21 @@ a.temp-difference:hover {
   font-size: 18px;
 }
 
-.weather-forecast {
+.WeatherForecast {
   text-align: center;
   color: #6c757d;
 }
-.weather-forecast-day {
+.WeatherForecast-day {
   font-size: 17px;
   font-family: "Playfair Display", serif;
   font-weight: 400;
   opacity: 0.8;
 }
-.weather-forecast-temperatures {
+.WeatherForecast-temperatures {
   font-size: 15px;
 }
 
-.weather-forecast-temperature-min {
+.WeatherForecast-temperature-min {
   opacity: 0.6;
 }
 small {

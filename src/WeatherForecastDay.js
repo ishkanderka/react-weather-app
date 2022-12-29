@@ -34,8 +34,8 @@ export default function WeatherForecastDay(props) {
           src={props.forecastDay.condition.icon_url}
           alt={props.forecastDay.condition.description}
           className="forecast-icon"
-          width="80"
-          height="80"
+          width="90"
+          height="90"
         />
       </div>
       <div className="WeatherForecast-temperatures">

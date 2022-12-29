@@ -3,7 +3,6 @@ import WeatherInfo from "./WeatherInfo";
 import axios from "axios";
 import "./Weather.css";
 import WeatherForecast from "./WeatherForecast";
-import Header from "./Header";
 
 export default function Weather(props) {
   const [weather, setWeather] = useState({ ready: false });
@@ -45,7 +44,6 @@ export default function Weather(props) {
         <div className="container">
           <div className="weather-app-wrapper">
             <div className="weather-app">
-              <Header city="New York" />
               <div className="row search-row justify-content-center">
                 <div className="col-9">
                   <form
@@ -69,16 +67,6 @@ export default function Weather(props) {
                           className="btn btn-outline-primary btn-block"
                         >
                           <i className="fas fa-search"></i> SEARCH
-                        </button>
-                      </div>
-
-                      <div className="col-auto">
-                        <button
-                          type="submit"
-                          className="btn btn-outline-secondary btn-block current-location"
-                        >
-                          <i className="fas fa-map-marker-alt me-1"> </i>{" "}
-                          LOCATION
                         </button>
                       </div>
                     </div>

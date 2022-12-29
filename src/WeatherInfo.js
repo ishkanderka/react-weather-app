@@ -17,11 +17,12 @@ export default function WeatherInfo(props) {
                 <span>
                   <CurrentDate date={props.info.date} />
                 </span>
-                <span>p.m.</span>
               </h6>
             </li>
             <li>
-              <h6 className="text-uppercase">{props.info.description}</h6>
+              <h6 className="text-uppercase fw-bold">
+                {props.info.description}
+              </h6>
             </li>
           </ul>
         </div>
