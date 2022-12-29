@@ -10,7 +10,6 @@ export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
-    console.log(response.data);
     setWeather({
       ready: true,
       coordinates: response.data.coordinates,
@@ -36,7 +35,7 @@ export default function Weather(props) {
 
   function search() {
     const apiKey = "bb6baff71441307f3828bdt1a95do413";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
 
@@ -46,7 +45,7 @@ export default function Weather(props) {
         <div className="container">
           <div className="weather-app-wrapper">
             <div className="weather-app">
-              <Header />
+              <Header city="New York" />
               <div className="row search-row justify-content-center">
                 <div className="col-9">
                   <form
@@ -75,7 +74,7 @@ export default function Weather(props) {
 
                       <div className="col-auto">
                         <button
-                          type="button"
+                          type="submit"
                           className="btn btn-outline-secondary btn-block current-location"
                         >
                           <i className="fas fa-map-marker-alt me-1"> </i>{" "}
